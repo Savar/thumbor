@@ -309,6 +309,7 @@ class Transformer(object):
         source_width, source_height = self.engine.size
         if self.target_width == source_width and self.target_height == source_height:
             return
+        logger.debug("transformer: resize({0},{1})".format(self.target_width, self.target_height))
         self.engine.resize(self.target_width or 1, self.target_height or 1)  # avoiding 0px images
 
     def fit_in_resize(self):
@@ -340,6 +341,7 @@ class Transformer(object):
             resize_height = self.target_height
             resize_width = round(source_width * self.target_height / source_height)
 
+        logger.debug("transformer: fit_in_resize({0},{1})".format(resize_width, resize_height))
         self.engine.resize(resize_width, resize_height)
 
     def debug(self):

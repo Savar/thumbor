@@ -10,6 +10,7 @@
 
 from thumbor.filters import BaseFilter, filter_method
 from thumbor.ext.filters import _fill
+from thumbor.utils import logger
 
 
 class Filter(BaseFilter):
@@ -24,6 +25,7 @@ class Filter(BaseFilter):
         self.fill_engine = self.engine.__class__(self.context)
         bx = self.context.request.width if self.context.request.width != 0 else self.engine.size[0]
         by = self.context.request.height if self.context.request.height != 0 else self.engine.size[1]
+        logger.debug("filter:fill request.size ({0}/{1})".format(bx,by))
 
         # if the color is 'auto'
         # we will calculate the median color of
@@ -37,6 +39,7 @@ class Filter(BaseFilter):
             self.fill_engine.image = self.fill_engine.gen_image((bx, by), '#%s' % color)
 
         ix, iy = self.engine.size
+        logger.debug("filter:fill engine.size ({0}/{1})".format(ix,iy))
 
         px = (bx - ix) / 2  # top left
         py = (by - iy) / 2

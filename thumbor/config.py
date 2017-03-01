@@ -308,6 +308,7 @@ Config.define(
         'thumbor.filters.extract_focal',
         'thumbor.filters.focal',
         'thumbor.filters.no_upscale',
+        'thumbor.filters.upscale',
         'thumbor.filters.saturation',
         'thumbor.filters.max_age',
         'thumbor.filters.curve',
